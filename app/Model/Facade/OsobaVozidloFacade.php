@@ -31,11 +31,6 @@ final class OsobaVozidloFacade
   public function listAssignedVozidlo(int $osobaId): array
   {
     $vozidloIds = $this->osobaVozidloService->getVozidloIdsByOsobaId($osobaId);
-    $vozidla = [];
-    foreach ($vozidloIds as $vozidloId)
-    {
-      $vozidla[] = $this->vozidloService->getVozidlo($vozidloId);
-    }
-    return $vozidla;
+    return array_map(fn($vozidloId) => $this->vozidloService->getVozidlo($vozidloId), $vozidloIds);
   }
 }

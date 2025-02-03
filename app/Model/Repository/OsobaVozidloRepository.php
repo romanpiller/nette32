@@ -4,6 +4,7 @@ namespace App\Model\Repository;
 
 use App\Model\Entity\OsobaVozidlo;
 use Nette\Database\Explorer;
+use Nette\Database\Table\ActiveRow;
 
 /**
  * Class OsobaVozidloRepository
@@ -33,16 +34,10 @@ final class OsobaVozidloRepository
    */
   public function findIdVozidlaByOsobaId(int $osobaId): array
   {
+    /** @var int[] $activeRows */
     $activeRows = $this->database->table(self::TABLE)
       ->where(OsobaVozidlo::OSOBA_ID . '  = ?', $osobaId)
-      ->fetchAll();
-    return array_map(
-      static function($activeRow){
-        /** @var array{id: int} $activeRow */
-        $activeRow =   $activeRow[OsobaVozidlo::ID];
-        /** @var int $id */
-        $id = $activeRow['id'];
-        return $id;
-    }, $activeRows);
+      ->fetchPairs(null, OsobaVozidlo::VOZIDLO_ID);
+    return $activeRows;
   }
 }

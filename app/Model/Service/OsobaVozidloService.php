@@ -11,9 +11,10 @@ use App\Model\Repository\OsobaVozidloRepository;
  */
 final class OsobaVozidloService
 {
-  public function __construct(private readonly OsobaVozidloRepository $osobaVozidloRepository)
+  public function __construct(
+    private readonly OsobaVozidloRepository $osobaVozidloRepository,
+  )
   {
-
   }
 
   /**

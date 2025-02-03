@@ -9,17 +9,11 @@ namespace App\Model\Entity;
  */
 final class OsobaVozidlo
 {
-  /** @var string column id */
-  public const ID = 'id';
-
   /** @var string column osoba_id */
   public const OSOBA_ID = 'osoba_id';
 
   /** @var string column vozidlo_id */
   public const VOZIDLO_ID = 'vozidlo_id';
-
-  /** @var int id */
-  private int $id;
 
   /** @var int osobaId */
   private int $osobaId;
@@ -35,7 +29,6 @@ final class OsobaVozidlo
    */
   public function __construct(array $data)
   {
-    $this->id = $data[self::ID];
     $this->osobaId = $data[self::OSOBA_ID];
     $this->vozidloId = $data[self::VOZIDLO_ID];
   }
@@ -48,20 +41,9 @@ final class OsobaVozidlo
   public function toArray(): array
   {
     return [
-      self::ID => $this->id,
       self::OSOBA_ID => $this->osobaId,
       self::VOZIDLO_ID => $this->vozidloId,
     ];
-  }
-
-  /**
-   * Getter id
-   *
-   * @return int
-   */
-  public function getId(): int
-  {
-    return $this->id;
   }
 
   /**
