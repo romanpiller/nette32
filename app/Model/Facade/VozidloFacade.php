@@ -18,11 +18,9 @@ class VozidloFacade
    * Constructor
    *
    * @param VozidloService    $vozidloService
-   * @param VozidloRepository $vozidloRepository
    */
   public function __construct(
     private readonly VozidloService $vozidloService,
-    private readonly VozidloRepository $vozidloRepository
   )
   {
   }
@@ -30,25 +28,25 @@ class VozidloFacade
   /**
    * Zjednodušené API pre získanie detailov vozidla
    *
-   * @param int $id
+   * @param int $vozidloId
    * @return Vozidlo
    * @throws InvalidArgumentException
    */
-  public function getVozidloDetails(int $id): Vozidlo
+  public function getVozidloDetails(int $vozidloId): Vozidlo
   {
-    return $this->vozidloRepository->findById($id);
+    return $this->vozidloService->getVozidlo($vozidloId);
   }
 
   /**
    * Zjednodušené API pre zmenu modelu vozidla
    *
-   * @param int    $id
+   * @param int    $vozidloId
    * @param string $newModel
    * @return void
    * @throws InvalidArgumentException
    */
-  public function changeVozidloModel(int $id, string $newModel): void
+  public function changeVozidloModel(int $vozidloId, string $newModel): void
   {
-    $this->vozidloService->updateVozidloModel($id, $newModel);
+    $this->vozidloService->updateVozidloModel($vozidloId, $newModel);
   }
 }

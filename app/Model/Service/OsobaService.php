@@ -2,6 +2,7 @@
 
 namespace App\Model\Service;
 
+use App\Model\Entity\Osoba;
 use App\Model\Entity\Vozidlo;
 use App\Model\Repository\OsobaRepository;
 use App\Model\Repository\OsobaVozidloRepository;
@@ -19,40 +20,38 @@ final class OsobaService
    * Constructor
    *
    * @param OsobaRepository        $osobaRepository
-   * @param OsobaVozidloRepository $osobaVozidloRepository
    * @return void
    */
   public function __construct(
     private readonly OsobaRepository $osobaRepository,
-    private readonly OsobaVozidloRepository $osobaVozidloRepository,
   )
   {
   }
 
   /**
+   * Ziskas osobu podla osoba Id
+   *
+   * @param int $osobaId
+   * @return Osoba
+   * @throws InvalidArgumentException
+   */
+  public function getOsoba(int $osobaId): Osoba
+  {
+    return $this->osobaRepository->findById($osobaId);
+  }
+
+  /**
    * Rename osoba object
    *
-   * @param int    $id
+   * @param int    $osobaId
    * @param string $newName
    * @return void
    * @throws InvalidArgumentException
    */
-  public function renameOsoba(int $id, string $newName): void
+  public function renameOsoba(int $osobaId, string $newName): void
   {
-    $osoba = $this->osobaRepository->findById($id);
+    $osoba = $this->osobaRepository->findById($osobaId);
     $osoba->setName($newName);
     $this->osobaRepository->update($osoba);
-  }
-
-  /**
-   * Priradí existujúce vozidlo osobe (nastaví cudzí kľúč v tabuľke vozidlo)
-   *
-   * @param int $osobaId
-   * @param int $vozidloId
-   * @throws InvalidArgumentException
-   */
-  public function assignVozidloToOsoba(int $osobaId, int $vozidloId): void
-  {
-    $this->osobaVozidloRepository->assignVozidlo($osobaId, $vozidloId);
   }
 }

@@ -1,0 +1,13 @@
+{block content}
+
+<h4>Vozidlo detail</h4>
+<hr/>
+{varType \App\Model\Entity\Vozidlo $vozidlo}
+<ul>
+    <li>{$vozidlo->getId()}</li>
+    <li>{$vozidlo->getModel()}</li>
+    <li>{$vozidlo->getRegistration()}</li>
+    <li>{$vozidlo->getColor()}</li>
+</ul>
+
+<p><a n:href="dbModelExample:">Spat</a></p>

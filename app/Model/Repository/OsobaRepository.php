@@ -3,7 +3,6 @@
 namespace App\Model\Repository;
 
 use App\Model\Entity\Osoba;
-use App\Model\Entity\Vozidlo;
 use InvalidArgumentException;
 use Nette\Database\Explorer;
 use Nette\Database\Table\ActiveRow;

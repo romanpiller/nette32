@@ -1,0 +1,13 @@
+{block content}
+
+<h4>Osoba detail</h4>
+<hr/>
+{varType \App\Model\Entity\Osoba $osoba}
+<ul>
+    <li>{$osoba->getId()}</li>
+    <li>{$osoba->getName()}</li>
+    <li>{$osoba->getAge()}</li>
+    <li>{$osoba->getBirthDate()}</li>
+</ul>
+
+<p><a n:href="dbModelExample:">Spat</a></p>

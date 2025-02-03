@@ -18,12 +18,10 @@ class OsobaFacade
    * Construct
    *
    * @param OsobaService    $osobaService
-   * @param OsobaRepository $osobaRepository
    * @return void
    */
   public function __construct(
     private readonly OsobaService $osobaService,
-    private readonly OsobaRepository $osobaRepository
   )
   {
   }
@@ -31,38 +29,25 @@ class OsobaFacade
   /**
    * Zjednodušené API pre získanie detailov osoby
    *
-   * @param int $id
+   * @param int $osobaId
    * @return Osoba
    * @throws InvalidArgumentException
    */
-  public function getOsobaDetails(int $id): Osoba
+  public function getOsobaDetails(int $osobaId): Osoba
   {
-    return $this->osobaRepository->findById($id);
+    return $this->osobaService->getOsoba($osobaId);
   }
 
   /**
    * Zjednodušené API pre zmenu mena osoby
    *
-   * @param int    $id
+   * @param int    $osobaId
    * @param string $newName
    * @return void
    * @throws InvalidArgumentException
    */
-  public function rename(int $id, string $newName): void
+  public function rename(int $osobaId, string $newName): void
   {
-    $this->osobaService->renameOsoba($id, $newName);
-  }
-
-  /**
-   * API pre priradenie vozidla osobe
-   *
-   * @param int $osobaId
-   * @param int $vozidloId
-   * @return void
-   * @throws InvalidArgumentException
-   */
-  public function assignVehicleToPerson(int $osobaId, int $vozidloId): void
-  {
-    $this->osobaService->assignVozidloToOsoba($osobaId, $vozidloId);
+    $this->osobaService->renameOsoba($osobaId, $newName);
   }
 }

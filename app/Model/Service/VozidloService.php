@@ -2,6 +2,7 @@
 
 namespace App\Model\Service;
 
+use App\Model\Entity\Vozidlo;
 use App\Model\Repository\VozidloRepository;
 use InvalidArgumentException;
 
@@ -18,16 +19,28 @@ class VozidloService
   }
 
   /**
+   * Vrati vozidlo podla vozidlo Id
+   *
+   * @param int $vozidloId
+   * @return Vozidlo
+   * @throws InvalidArgumentException
+   */
+  public function getVozidlo(int $vozidloId): Vozidlo
+  {
+    return $this->vozidloRepository->findById($vozidloId);
+  }
+
+  /**
    * Aktualizuje model vozidla
    *
-   * @param int    $id
+   * @param int    $vozidloId
    * @param string $newModel
    * @return void
    * @throws InvalidArgumentException
    */
-  public function updateVozidloModel(int $id, string $newModel): void
+  public function updateVozidloModel(int $vozidloId, string $newModel): void
   {
-    $vozidlo = $this->vozidloRepository->findById($id);
+    $vozidlo = $this->vozidloRepository->findById($vozidloId);
     $vozidlo->setModel($newModel);
     $this->vozidloRepository->update($vozidlo);
   }

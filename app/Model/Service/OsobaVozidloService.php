@@ -2,6 +2,8 @@
 
 namespace App\Model\Service;
 
+use App\Model\Repository\OsobaVozidloRepository;
+
 /**
  * Class OsobaVozidloService
  *
@@ -9,5 +11,19 @@ namespace App\Model\Service;
  */
 final class OsobaVozidloService
 {
+  public function __construct(private readonly OsobaVozidloRepository $osobaVozidloRepository)
+  {
 
+  }
+
+  /**
+   * Ziska pole vozidiel priradenych osobe id
+   *
+   * @param int $osobaId
+   * @return int[]
+   */
+  public function getVozidloIdsByOsobaId(int $osobaId): array
+  {
+    return $this->osobaVozidloRepository->findIdVozidlaByOsobaId($osobaId);
+  }
 }

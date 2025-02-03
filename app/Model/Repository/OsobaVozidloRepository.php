@@ -13,7 +13,7 @@ use Nette\Database\Explorer;
 final class OsobaVozidloRepository
 {
   /** @var string table name */
-  public const TABLE = 'osoba_vozidlo';
+  public const TABLE = 'osoba_vozidla';
 
   /**
    * Construct
@@ -29,45 +29,20 @@ final class OsobaVozidloRepository
    * Vyhlada vozidlo podla id
    *
    * @param int $osobaId
-   * @return array
+   * @return int[]
    */
-  public function findVozidlaByOsoba(int $osobaId): array
+  public function findIdVozidlaByOsobaId(int $osobaId): array
   {
     $activeRows = $this->database->table(self::TABLE)
-      ->where(OsobaVozidlo::OSOBA_ID, $osobaId)->fetchAll();
-    //TODO: ak problem ze activeRows nie nie pole tak iterator_to_array($activeRows)
-    return array_map(static fn($activeRow) => new OsobaVozidlo($activeRow), $activeRows);
+      ->where(OsobaVozidlo::OSOBA_ID . '  = ?', $osobaId)
+      ->fetchAll();
+    return array_map(
+      static function($activeRow){
+        /** @var array{id: int} $activeRow */
+        $activeRow =   $activeRow[OsobaVozidlo::ID];
+        /** @var int $id */
+        $id = $activeRow['id'];
+        return $id;
+    }, $activeRows);
   }
-
-  /**
-   * Sparuje vozidlo a osobu
-   *
-   * @param int $osobaId
-   * @param int $vozidloId
-   */
-  public function assignVozidlo(int $osobaId, int $vozidloId): void
-  {
-    //TODO: tu ak zadas zle id hodi to mysql vynimku
-    $this->database->table(self::TABLE)->insert([
-      OsobaVozidlo::OSOBA_ID => $osobaId,
-      OsobaVozidlo::VOZIDLO_ID => $vozidloId,
-    ]);
-  }
-
-  /**
-   * Odparuje osobu a vozidlo
-   *
-   * @param int $osobaId
-   * @param int $vozidloId
-   * @return bool
-   */
-  public function removeVozidlo(int $osobaId, int $vozidloId): bool
-  {
-    return (bool) $this->database->table(self::TABLE)
-      ->where(OsobaVozidlo::OSOBA_ID, $osobaId)
-      ->where(OsobaVozidlo::VOZIDLO_ID, $vozidloId)
-      ->delete();
-  }
-
-
 }
