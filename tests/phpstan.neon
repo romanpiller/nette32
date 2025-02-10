@@ -1,0 +1,24 @@
+parameters:
+#    universalObjectCratesClasses:
+#        - Nette\Database\Table\ActiveRow
+    level: 9
+    fileExtensions:
+        - php
+        - phpt
+    parallel:
+        processTimeout: 30.0
+    exceptions:
+      check:
+          tooWideThrowType: true
+          missingCheckedExceptionInThrows: true
+      uncheckedExceptionRegexes:
+#          - '#^TypeError$#'
+#          - '#^Nette\\DI\\MissingServiceException$#'
+#          - '#^Nette\\Application\\AbortException$#'
+    # vo verzii php 8.2 skus pouzit atribut #[AllowDynamicProperties]
+    checkDynamicProperties: false
+    ignoreErrors:
+#          - '#Access to an undefined property Nette\\Application\\UI\\Template\|stdClass#'
+#          - '#Cannot call method setFile\(\) on Nette\\Application\\UI\\Template\|stdClass#'
+includes:
+  - phpstan-baseline.neon

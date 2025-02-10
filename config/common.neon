@@ -1,18 +1,15 @@
 parameters:
 
-
 application:
 	errorPresenter:
 		4xx: Error:Error4xx
 		5xx: Error:Error5xx
 	mapping: App\UI\*\**Presenter
 
-
 database:
-	dsn: 'sqlite::memory:'
-	user:
-	password:
-
+	dsn: 'mysql:host=127.0.0.1;dbname=demo'
+	user: root
+	password: freedom
 
 latte:
 	strictTypes: yes
@@ -20,6 +17,8 @@ latte:
 	extensions:
 		- App\UI\Accessory\LatteExtension
 
+session:
+   debugger: true
 
 di:
 	export:

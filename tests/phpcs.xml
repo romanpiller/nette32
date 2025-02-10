@@ -1,0 +1,99 @@
+<?xml version="1.0" ?>
+<ruleset name="Roman">
+    <descrition>Romco Rules</descrition>
+
+<!-- PSR 12 -->
+    <rule ref="PSR12">
+        <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock" />
+        <exclude name="PSR12.Files.OpenTag.NotAlone" />
+    </rule>
+
+<!-- PSR 1 -->
+<!--
+    <exclude name="PSR1.Files.SideEffects" />
+-->
+<!-- PSR 2 -->
+
+    <rule ref="PSR2.Methods.FunctionCallSignature">
+        <properties>
+            <property name="indent" value="2"/>
+        </properties>
+    </rule>
+
+    <rule ref="PSR2.ControlStructures.SwitchDeclaration">
+        <exclude name="PSR2.ControlStructures.SwitchDeclaration.BreakIndent"/>
+    </rule>
+
+<!-- Generic -->
+<!--&lt;!&ndash;-->
+    <rule ref="Generic.Files.LineEndings">
+        <exclude name="Generic.Files.LineEndings.InvalidEOLChar"/>
+<!--        <exclude name="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/>-->
+    </rule>
+<!--&ndash;&gt;-->
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="150"/>
+            <property name="absoluteLineLimit" value="150"/>
+        </properties>
+    </rule>
+
+    <rule ref="Generic.WhiteSpace.ScopeIndent">
+        <properties>
+            <property name="indent" value="2"/>
+        </properties>
+    </rule>
+<!--
+    <rule ref="Generic.Commenting.DocComment">
+        <exclude name="Generic.Commenting.DocComment.TagValueIndent"/>
+        <exclude name="Generic.Commenting.DocComment.MissingShort"/>
+        <exclude name="Generic.Commenting.DocComment.ContentAfterOpen"/>
+        <exclude name="Generic.Commenting.DocComment.ContentBeforeClose"/>
+    </rule>
+-->
+
+<!-- Squiz -->
+
+    <rule ref="Squiz.ControlStructures.ControlSignature">
+<!--        <exclude name="Squiz.Commenting.ClassComment.TagNotAllowed"/>-->
+        <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+        <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
+        <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+    </rule>
+<!--
+    <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing">
+        <exclude/>
+    </rule>
+
+    <rule ref="Squiz.Commenting.BlockComment">
+        <exclude name ="Squiz.Commenting.BlockComment.NoEmptyLineAfter"/>
+        <exclude name ="Squiz.Commenting.BlockComment.WrongStart"/>
+    </rule>
+
+    <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterHint">
+        <exclude/>
+    </rule>
+
+    <rule ref="Squiz.Functions.MultiLineFunctionDeclaration">
+        <properties>
+            <property name="indent" value="2"/>
+        </properties>
+    </rule>
+-->
+    <rule ref="Squiz.Functions.MultiLineFunctionDeclaration">
+        <properties>
+            <property name="indent" value="2"/>
+        </properties>
+    </rule>
+
+<!--
+    <rule ref="Squiz.Commenting.BlockComment.NoEmptyLineAfter"/>
+    <rule ref="Squiz.Commenting.FunctionComment.IncorrectTypeHint"/>
+    <rule ref="Squiz.Commenting.ClassComment.Missing"/>
+-->
+
+    <!-- inheritDoc neberie v uvahu -->
+    <!--    <rule ref="Squiz.Commenting.FunctionComment.Missing"/>-->
+    <!--    <rule ref="Squiz.Commenting.FunctionComment.MissingParamTag"/>-->
+
+</ruleset>

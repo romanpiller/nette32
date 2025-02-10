@@ -1,0 +1,68 @@
+{block content}
+
+<p><a n:href=":default">Reset</a></p>
+
+{* vyvolanie ajax signalu, class ajax povinne *}
+<a n:href="generateNumber01!" class="ajax">Generuje ajax cez ajax class</a>
+
+{* ---------------------------------------------------------------------------------------- *}
+<hr/>
+<p id="message02"></p>
+
+{* volanie cez js s pomocu naja kniznice *}
+<button type="button" id="button02">Generuje ajax cez JS s pomocou volania naja.makeRequest</button>
+
+<script>
+    $(document).ready(function () {
+        $('#button02').click(function () {
+            naja.makeRequest(
+                'GET',
+                {link generateNumber! 'Generuje ajax cez JS s pomocou volania naja.makeRequest: '}
+            )
+            .then(function (response) {
+                $('#message02').text(response.message + response.number);
+            })
+            .catch(function (error) {
+                console.error('Chyba:', error);
+            });
+        });
+    });
+</script>
+
+{* ---------------------------------------------------------------------------------------- *}
+<hr/>
+<p id="message03"></p>
+
+{* volanie cez js s pomocu jquery kniznice *}
+<button type="button" id="button03">Generuje ajax cez JS jquery .ajax volania.</button>
+
+<script>
+    $(document).ready(function () {
+        $('#button03').click(function () {
+            $.ajax({
+                url: {link generateNumber!},
+                data: {
+                    message: 'Generuje ajax cez JS jquery .ajax volania.'
+                },
+                success: function (response) {
+                    $('#message03').text(response.message + response.number);
+                }
+            });
+        })
+    });
+</script>
+
+{* ---------------------------------------------------------------------------------------- *}
+<hr/>
+<p n:snippet="header">{$message ?? 'Header'}</p>
+<p n:snippet="footer">{$message ?? 'Footer'}</p>
+
+<p><a n:href="updateMessage!,
+snippet => 'header',
+message => 'Generuje ajax cez JS a naja.makeRequest aktualizuje header'"
+        class="ajax">Generuje ajax bez JS cez ajax class, vyuziva snippets</a></p>
+
+<p><a n:href="updateMessage!,
+snippet => 'footer',
+message => 'Generuje ajax cez JS a naja.makeRequest aktualizuje footer'"
+            class="ajax">Generuje ajax bez JS cez ajax class, vyuziva snippets</a></p>

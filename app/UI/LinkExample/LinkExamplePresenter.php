@@ -1,19 +1,18 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace App\UI\Home;
+namespace App\UI\LinkExample;
 
 use App\UI\Accessory\FormFactory;
 use Nette;
-use Nette\Application\Attributes\Requires;
 use Nette\Application\UI\Form;
-use Nette\Forms\Controls\Button;
 use Nette\Forms\Controls\SubmitButton;
-use Tracy\Debugger;
 
-
-final class HomePresenter extends Nette\Application\UI\Presenter
+/**
+ * Class LinkExamplePresenter
+ *
+ * @author Roman Piller
+ */
+final class LinkExamplePresenter  extends Nette\Application\UI\Presenter
 {
   public function __construct(private FormFactory $formFactory)
   {

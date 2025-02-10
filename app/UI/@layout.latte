@@ -3,17 +3,21 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<title>{ifset title}{include title|stripHtml} | {/ifset}Nette Web</title>
 </head>
 
 <body>
+	{*	kvoli volania z link *}
+	<form method="post" id="postForm"></form>
 	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
 
 	{include content}
 
 	{block scripts}
-	<script src="https://unpkg.com/nette-forms@3"></script>
+		<script src="https://unpkg.com/nette-forms@3"></script>
+		<script src="https://unpkg.com/naja@2/dist/Naja.min.js"></script>
+		<script>naja.initialize();</script>
 	{/block}
 </body>
 </html>

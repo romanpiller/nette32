@@ -1,0 +1,37 @@
+{* This is the welcome page, you can delete it *}
+
+{block content}
+
+<h3>default</h3>
+
+<ul>
+    <li>no action</li>
+    <li>no render</li>
+</ul>
+
+<p>
+    <a n:href="PostExample:default">Post volania</a>
+</p>
+<hr/>
+
+<p><a n:href="edit">edit -  render</a></p>
+<p><a n:href="create">create - action, render</a></p>
+
+
+<p>
+    {* preco nejde ??? *}
+    <button onclick="window.location.href = '{link presmeruj}';">(js) Presmerovanie Akcia</button>
+</p>
+<p>
+    {* preco nejde ??? *}
+    <button onclick="window.location.href = '{plink Home:presmeruj}';">(js) Presmerovanie Signal</button>
+</p>
+<p>
+    <button class="btn btn-link" form="postForm" formaction="{link presmeruj}">post presmeruj</button>
+</p>
+<p>
+    {* post presmerovanie , druhe tlacidlo z form vyvola vlasny link *}
+    {control postRedirectForm}
+</p>
+<p><a n:href="presmeruj">presmeruj cez Akcia</a></p>
+<p><a n:href="presmeruj!">presmeruj cez Signal</a></p>

@@ -1,0 +1,37 @@
+{block content}
+<p>
+    <a n:href="Home:">BACK</a>
+</p>
+
+<hr/>
+
+<p>
+    <a n:href="delete!">Delete - cez link - GET</a>
+</p>
+
+
+<form method="get" id="getForm"></form>
+<p>
+    <button form="getForm"
+            formaction="{link delete!}">
+        Delete - Button vo GET-FORM - GET</button>
+</p>
+
+<form method="post" id="postForm"></form>
+<p>
+    <button form="postForm"
+            formaction="{link delete!}">
+        Delete - Button vo POST-FORM - POST - OK</button>
+</p>
+
+<p>
+<form method="post" action="{link delete!}">
+    <input type="submit" value="Tlacidlo Submit z FORM-POST cez action - POST - OK"/>
+    <button formaction="{link delete2!}">Button z FORM-POST cez formaction OK</button>
+</form>
+</p>
+
+<button onclick='location.href="{link delete!}"'>Delete cez JS - GET</button>
+
+<p>Nette formular</p>
+{control testForm}

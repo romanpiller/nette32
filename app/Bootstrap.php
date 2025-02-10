@@ -6,6 +6,7 @@ namespace App;
 
 use Nette;
 use Nette\Bootstrap\Configurator;
+use Tracy\Debugger;
 
 
 class Bootstrap
@@ -34,6 +35,9 @@ class Bootstrap
 	{
 		//$this->configurator->setDebugMode('secret@23.75.345.200'); // enable for your remote IP
 		$this->configurator->enableTracy($this->rootDir . '/log');
+
+    Debugger::$logDirectory = $this->rootDir . '/log';
+    Debugger::$logSeverity = E_WARNING | E_NOTICE;
 
 		$this->configurator->createRobotLoader()
 			->addDirectory(__DIR__)
