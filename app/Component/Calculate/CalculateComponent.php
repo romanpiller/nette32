@@ -37,7 +37,7 @@ final class CalculateComponent extends Control
   // spracovanie komponenty
   protected function formSucceeded(array $values): void
   {
-    if($values['a'] === null || $values['b'] === null)
+    if(($values['a'] === null) || ($values['b'] === null))
     {
       // ERROR PRESMEROVANIE MIMO KOMPONENTU
       $this->getPresenter()?->redirect('Comp:error');

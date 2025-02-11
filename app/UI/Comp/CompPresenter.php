@@ -17,7 +17,10 @@ final class CompPresenter extends Nette\Application\UI\Presenter
   // pouzije komponentu na sucet
   protected function createComponentSucetForm(): CalculateComponent
   {
+    // vytvorim komponentu
     $sucetComponent = new CalculateComponent("Sucet");
+
+    // nastavim komponente callback
     $sucetComponent->onSucceeded [] = function ($component, $values) {
         $this->sucetSucceeded($component, $values);
       };
@@ -28,7 +31,10 @@ final class CompPresenter extends Nette\Application\UI\Presenter
   // pouzije komponentu na podiel
   protected function createComponentPodielForm(): CalculateComponent
   {
+    // vytvorim komponentu
     $podielComponent = new CalculateComponent("Podiel");
+
+    // nastavim komponente callback
     $podielComponent->onSucceeded [] = function ($component, $values) {
       $this->podielSucceeded($component, $values);
     };
